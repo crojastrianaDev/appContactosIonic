@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nuevo Contacto</ion-title>
+    <ion-button color="danger" (click)="regresar()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form novalidate [formGroup]="nuevoForm">
+    <ion-item>
+      <ion-label position="floating"
+        >Identificación<ion-text color="danger">*</ion-text></ion-label
+      >
+      <ion-input
+        type="tel"
+        placeholder="N° de identificación"
+        formControlName="identificacion"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"
+        >Tipo ID<ion-text color="danger">*</ion-text></ion-label
+      >
+
+      <ion-select
+        formControlName="tipoid"
+        placeholder="Seleccione"
+        interface="popover"
+        required
+      >
+        <ion-select-option *ngFor="let item of tipoIds" [value]="item.id"
+          >{{item.nTipoId}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"
+        >Nombre<ion-text color="danger">*</ion-text></ion-label
+      >
+      <ion-input
+        type="text"
+        placeholder="Nombre"
+        formControlName="nombre"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"
+        >Apellidos<ion-text color="danger">*</ion-text></ion-label
+      >
+      <ion-input
+        type="text"
+        placeholder="Apellidos"
+        required
+        formControlName="apellido"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Empresa</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Empresa"
+        required
+        formControlName="empresa"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"
+        >Celular<ion-text color="danger">*</ion-text></ion-label
+      >
+      <ion-input
+        type="tel"
+        placeholder="# Celular"
+        required
+        formControlName="telefono"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input
+        type="email"
+        placeholder="micorreo@correo.com"
+        required
+        formControlName="correo"
+      ></ion-input>
+    </ion-item>
+    <ion-buttons slot="end">
+      <ion-button color="secondary" (click)="guardar()">
+        <ion-icon name="add"></ion-icon>
+        Guardar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>
