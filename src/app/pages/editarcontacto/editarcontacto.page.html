@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar contactos</ion-title>
+    <ion-button color="danger" (click)="regresar()" slot="start">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content *ngIf="seleccionado">
+    <form novalidate [formGroup]="editarForm">
+      <ion-item>
+        <ion-label position="floating">Identificación</ion-label>
+        <ion-input
+          type="tel"
+          required
+          formControlName="identificacion"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">TIpo ID</ion-label>
+
+        <ion-select
+          formControlName="tipoid"
+          placeholder="Seleccione"
+          required
+          [value]="seleccionado.id"
+        >
+          <ion-select-option *ngFor="let item of tipoIds" [value]="item.id">
+            {{item.nTipoId}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" formControlName="nombre" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input type="text" formControlName="apellido" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Empresa</ion-label>
+        <ion-input type="text" formControlName="empresa" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input type="tel" formControlName="telefono" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="email" formControlName="correo" required></ion-input>
+      </ion-item>
+      <ion-buttons slot="end">
+        <ion-button (click)="guardar()" color="primary" *ngIf="seleccionado">
+          Guardar
+        </ion-button>
+      </ion-buttons>
+    </form>
+  </ion-content>
+</ion-content>

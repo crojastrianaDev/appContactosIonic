@@ -49,4 +49,17 @@ export class ContactoService {
         catchError(this.handleError('Crear contacto'))
       );
   }
+  getContacto(id: number): Observable<Icontacts> {
+    const url = `${this.contactosUrl}/${id}`;
+    return this.http.get<Icontacts>(url).pipe(
+      tap((_) => this.log(`Contacto ${id} encontrado`)),
+      catchError(this.handleError(`Contacto ${id}`))
+    );
+  }
+  editarContacto(contacto: Icontacts): Observable<any> {
+    return this.http.put(this.contactosUrl, contacto, httpOptions).pipe(
+      tap((_) => this.log(`COntacto ${contacto.id} editado `)),
+      catchError(this.handleError('Editar contacto'))
+    );
+  }
 }

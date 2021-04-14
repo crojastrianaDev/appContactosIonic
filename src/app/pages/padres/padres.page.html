@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="seleccionado"
+      >Padres de {{seleccionado.nombre}} {{seleccionado.apellido}}</ion-title
+    >
+    <ion-buttons slot="start">
+      <ion-button (click)="regresar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="seleccionado">
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-icon size="large" name="person-circle"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>
+          <ion-icon slot="start" name="call-outline"></ion-icon
+          >{{seleccionado.telefono}}
+        </h2>
+        <h3>
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          {{seleccionado.correo}}
+        </h3>
+        <h4>
+          <ion-icon slot="start" name="business-outline"></ion-icon>
+          {{seleccionado.empresa}}
+        </h4>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngFor="let item of padres">
+    <ion-item>
+      <ion-icon slot="start" name="man" *ngIf="item.parentesco==1"></ion-icon>
+      <ion-icon slot="start" name="woman" *ngIf="item.parentesco==2"></ion-icon>
+      <ion-label>
+        <h5>{{item.nombrePadre}}</h5>
+        <p>{{item.identificacion}}</p>
+      </ion-label>
+      <ion-button fill="outline" slot="end">
+        <ion-icon name="setting-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-card-content> {{item.descripcion}} </ion-card-content>
+    <ion-button (click)="selectPadre(item.id)">
+      <ion-icon slot="icon-only" name="setting-ouline"></ion-icon>
+    </ion-button>
+  </ion-card>
+</ion-content>

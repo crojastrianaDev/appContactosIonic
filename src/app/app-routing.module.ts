@@ -13,6 +13,14 @@ const routes: Routes = [
   {
     path: 'nuevo-contacto',
     loadChildren: () => import('./pages/nuevo-contacto/nuevo-contacto.module').then( m => m.NuevoContactoPageModule)
+  },
+  {
+    path: 'editarcontacto',
+    loadChildren: () => import('./pages/editarcontacto/editarcontacto.module').then( m => m.EditarcontactoPageModule)
+  },
+  {
+    path: 'padres',
+    loadChildren: () => import('./pages/padres/padres.module').then( m => m.PadresPageModule)
   }
 ];
 @NgModule({

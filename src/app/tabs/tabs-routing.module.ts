@@ -37,6 +37,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'editarcontacto/:id',
+        loadChildren: () =>
+          import('../pages/editarcontacto/editarcontacto.module').then(
+            (m) => m.EditarcontactoPageModule
+          ),
+      },
+      {
+        path: 'padres/:id',
+        loadChildren: () =>
+          import('../pages/padres/padres.module').then(
+            (m) => m.PadresPageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',

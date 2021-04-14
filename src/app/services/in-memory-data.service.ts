@@ -29,7 +29,7 @@ export class InMemoryDataService implements InMemoryDataService {
         correo: 'lfolo@gmail.com',
       },
       {
-        id: 1,
+        id: 3,
         identificacion: '1025285',
         tipoId: 1,
         nombre: 'Danna',
@@ -39,7 +39,7 @@ export class InMemoryDataService implements InMemoryDataService {
         correo: 'daro@gmail.com',
       },
       {
-        id: 1,
+        id: 4,
         identificacion: '1025455',
         tipoId: 2,
         nombre: 'Juan',
