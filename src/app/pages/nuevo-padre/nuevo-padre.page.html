@@ -50,7 +50,7 @@
         <ion-label position="floating">Id Hijo</ion-label>
         <ion-input
           formControlName="hijoId"
-          type="tel"
+          type="text"
           *ngIf="idHijo"
           value="{{idHijo}}"
           >{{idHijo}}</ion-input
@@ -64,6 +64,12 @@
           formControlName="descripcion"
         ></ion-input>
       </ion-item>
+      <ion-buttons slot="end">
+        <ion-button color="secondary" (click)="guardar()">
+          <ion-icon name="add"></ion-icon>
+          Guardar
+        </ion-button>
+      </ion-buttons>
     </ion-list>
   </form>
 </ion-content>

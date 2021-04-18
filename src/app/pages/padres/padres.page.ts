@@ -29,7 +29,7 @@ export class PadresPage implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      console.log(params['id']);
+      // console.log(params['id']);
 
       this.contactoService
         .getContacto(params['id'])
@@ -46,7 +46,7 @@ export class PadresPage implements OnInit {
           this.bandera = true;
           //si ya tiene dos no puede agregar más
         } else {
-          console.log(this.padres);
+          // console.log(this.padres);
         }
       });
     });
@@ -58,20 +58,25 @@ export class PadresPage implements OnInit {
   async selectPadre(padre: any) {
     const actionsheet = await this.actionSheetController.create({
       header: '¿Qué desea realizar?',
+      //(click)="borrar(item); $event.stopImmediatePropagation()"
       buttons: [
         {
-          text: 'Boorar padre',
+          text: 'Borar padre',
+
           role: 'destructive',
           icon: 'trash',
+
           handler: () => {
-            alert('Borrar ' + padre);
+            // (click)="borrar(item); $event.stopImmediatePropagation()"
+            this.borrar(padre);
+            //alert('Borrar ' + padre);
           },
         },
         {
           text: 'Modificar padre',
           icon: 'share',
           handler: () => {
-            alert('Modificar ' + padre);
+            // alert('Modificar ' + padre);
           },
         },
         {
@@ -85,5 +90,30 @@ export class PadresPage implements OnInit {
       ],
     });
     await actionsheet.present();
+  }
+  async borrar(padre: IPadre) {
+    const alert = await this.alerController.create({
+      header: 'Borrar!',
+      message: '¿Esta seguro que desea borrar el contacto?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm cancel: blah');
+          },
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            this.padres = this.padres.filter((e) => e !== padre);
+            this.padresService.borrar(padre).subscribe();
+            this.ngOnInit();
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }

@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'nuevo-padre',
     loadChildren: () => import('./pages/nuevo-padre/nuevo-padre.module').then( m => m.NuevoPadrePageModule)
+  },
+  {
+    path: 'editar-padre',
+    loadChildren: () => import('./pages/editar-padre/editar-padre.module').then( m => m.EditarPadrePageModule)
   }
 ];
 @NgModule({

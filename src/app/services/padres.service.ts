@@ -43,4 +43,19 @@ export class PadresService {
       catchError(this.handleError('Error crerando padre'))
     );
   }
+
+  borrar(padre: IPadre | number): Observable<IPadre> {
+    const id = typeof padre == 'number' ? padre : padre.id;
+    const url = `${this.padresUrl}/${id}`;
+    return this.http.delete<IPadre>(url, httpOptions).pipe(
+      tap(() => this.log(`Padre ${id} borradp`)),
+      catchError(this.handleError('Borrando padre'))
+    );
+  }
+  editar(padre: IPadre): Observable<IPadre> {
+    return this.http.put<IPadre>(this.padresUrl, padre, httpOptions).pipe(
+      tap(() => this.log(`Padre ${padre.id} editado`)),
+      catchError(this.handleError('Editando padre'))
+    );
+  }
 }

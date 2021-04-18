@@ -19,7 +19,8 @@ import { ParentescoService } from '../../services/parentesco.service';
 export class NuevoPadrePage implements OnInit {
   idHijo: any;
   parentescos: IParentesco[];
-  padres: IPadre[];
+  padre: IPadre;
+  padres: IPadre[] = [];
   nuevoForm: FormGroup;
   isSubmited = false;
 
@@ -41,6 +42,8 @@ export class NuevoPadrePage implements OnInit {
     });
     this.createForm();
     this.getParentescosIds();
+    this.getPadres(this.idHijo);
+    //console.log(this.padres);
   }
 
   regresar(): void {
@@ -48,7 +51,7 @@ export class NuevoPadrePage implements OnInit {
   }
   getParentescosIds(): void {
     this.parentescosIds.getParentescos().subscribe((ids) => {
-      console.log(ids);
+      //console.log(ids);
 
       this.parentescos = ids;
     });
@@ -61,5 +64,37 @@ export class NuevoPadrePage implements OnInit {
       hijoId: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
+  }
+  async mostrarMensaje(mensaje) {
+    const toas = await this.toastController.create({
+      message: mensaje,
+      duration: 2500,
+    });
+    toas.present();
+  }
+  getPadres(idHijo: number): void {
+    this.padresService
+      .getPadres(idHijo)
+      .subscribe((resp) => (this.padres = resp));
+  }
+  guardar() {
+    this.isSubmited = true;
+    if (!this.nuevoForm.valid) {
+      this.mostrarMensaje('Diligencie el formulario completo, por favor');
+      //control de 2 padres
+    } else if (this.padres.length > 1) {
+      this.mostrarMensaje('No puedes agregar más padres!');
+    } else {
+      this.padre = this.nuevoForm.value;
+      this.padresService.addPadre(this.padre).subscribe((padre) => {
+        this.mostrarMensaje('Padre guardado');
+        this.padres.push(padre);
+        padre = null;
+        this.resetForm();
+      });
+    }
+  }
+  resetForm() {
+    this.nuevoForm.reset();
   }
 }
