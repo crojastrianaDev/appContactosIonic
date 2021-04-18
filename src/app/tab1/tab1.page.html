@@ -2,6 +2,12 @@
   <ion-toolbar>
     <ion-title> Inicio </ion-title>
   </ion-toolbar>
+  <ion-searchbar
+    placeholder="Buscar..."
+    [(ngModel)]="searchTerm"
+    (ionChange)="buscar()"
+    showCancelButton="always"
+  ></ion-searchbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
