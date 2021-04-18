@@ -17,9 +17,24 @@ export class ContactosPage implements OnInit {
   ) {}
 
   getContactos() {
-    this.contactsService
-      .getContactos()
-      .subscribe((resp) => (this.contactos = resp));
+    this.contactsService.getContactos().subscribe((resp) => {
+      this.contactos = resp;
+      //ordenamos el arreglo de contactos en orden alfabetico
+      const contactoOrdenados: Icontacts[] = this.contactos.sort(function (
+        a,
+        b
+      ) {
+        if (a.apellido > b.apellido) {
+          return 1;
+        }
+        if (a.apellido < b.apellido) {
+          return -1;
+        }
+        return 0;
+      });
+
+      console.log(contactoOrdenados);
+    });
   }
 
   ngOnInit() {}

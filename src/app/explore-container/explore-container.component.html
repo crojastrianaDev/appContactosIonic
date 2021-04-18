@@ -1,12 +1,10 @@
 <div id="container">
   <strong>{{ name }}</strong>
-  <p>
+  <p *ngIf="datos">
     Conocer más
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://www.hornetestudio.tech"
-      >Alejandro Rojas Triana</a
-    >
+    <a target="_blank" rel="noopener noreferrer" [href]="datos.web">{{
+      datos.nombre
+    }}</a>
+    {{ datos.jornada }}
   </p>
 </div>
