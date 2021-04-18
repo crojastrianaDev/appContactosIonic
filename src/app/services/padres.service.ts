@@ -52,6 +52,24 @@ export class PadresService {
       catchError(this.handleError('Borrando padre'))
     );
   }
+  /**
+   * 
+   * @param padre getContacto(id: number): Observable<Icontacts> {
+    const url = `${this.contactosUrl}/${id}`;
+    return this.http.get<Icontacts>(url).pipe(
+      tap((_) => this.log(`Contacto ${id} encontrado`)),
+      catchError(this.handleError(`Contacto ${id}`))
+    );
+  }
+   * @returns 
+   */
+  getPadre(id: number): Observable<IPadre> {
+    const url = `${this.padresUrl}/${id}`;
+    return this.http.get<IPadre>(url).pipe(
+      tap(() => this.log(`Padre ${id} enocntrado`)),
+      catchError(this.handleError('Padre'))
+    );
+  }
   editar(padre: IPadre): Observable<IPadre> {
     return this.http.put<IPadre>(this.padresUrl, padre, httpOptions).pipe(
       tap(() => this.log(`Padre ${padre.id} editado`)),

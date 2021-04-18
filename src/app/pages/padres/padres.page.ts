@@ -77,6 +77,8 @@ export class PadresPage implements OnInit {
           icon: 'share',
           handler: () => {
             // alert('Modificar ' + padre);
+            console.log('Modificar', padre);
+            this.router.navigate([`/tabs/editarpadre/${padre}`]);
           },
         },
         {

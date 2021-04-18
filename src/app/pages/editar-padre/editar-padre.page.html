@@ -1,9 +1,68 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>editarPadre</ion-title>
+    <ion-title>Editar padre</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="regresar()">
+        <ion-icon slot="start" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="seleccionado">
+  <form novalidate [formGroup]="editarForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Identificación</ion-label>
+        <ion-input
+          type="tel"
+          placeholder="Documnento de identidad"
+          formControlName="identificacion"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Nombre padre"
+          formControlName="nombrePadre"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Parentesco</ion-label>
+        <ion-select
+          formControlName="parentesco"
+          placeholder="Selecciones parentesco"
+          interface="popover"
+          required
+        >
+          <ion-select-option
+            *ngFor="let item of parentesco"
+            value="{{item.id}}"
+          >
+            {{item.parentesco}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Id Hijo</ion-label>
+        <ion-input formControlName="hijoId" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Empleo etc"
+          formControlName="descripcion"
+        ></ion-input>
+      </ion-item>
+      <ion-buttons slot="end">
+        <ion-button (click)="guardar()" color="primary" *ngIf="seleccionado">
+          Guardar
+        </ion-button>
+      </ion-buttons>
+    </ion-list>
+  </form>
 </ion-content>

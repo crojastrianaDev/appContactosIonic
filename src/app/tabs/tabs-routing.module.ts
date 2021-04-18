@@ -58,6 +58,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'editarpadre/:id',
+        loadChildren: () =>
+          import('../pages/editar-padre/editar-padre.module').then(
+            (m) => m.EditarPadrePageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',
