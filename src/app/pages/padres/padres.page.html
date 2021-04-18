@@ -48,19 +48,13 @@
     </ion-item>
     <ion-card-content> {{item.descripcion}} </ion-card-content>
   </ion-card>
-  <ion-content *ngIf="bandera">
-    <ion-fab
+  <ion-content class="centrado" *ngIf="bandera">
+    <ion-button
       *ngIf="seleccionado"
-      vertical="bottom"
-      horizontal="end"
-      slot="fixed"
-    >
-      <ion-fab-button
-        routerLink="/tabs/nuevopadre/{{seleccionado.id}}"
-        routerDirection="forward"
-      >
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+      routerLink="/tabs/nuevopadre/{{seleccionado.id}}"
+      routerDirection="forward"
+      >Agregar un padre
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
   </ion-content>
 </ion-content>

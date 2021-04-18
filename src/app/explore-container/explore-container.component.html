@@ -1,10 +1,10 @@
-<div id="container">
-  <strong>{{ name }}</strong>
-  <p *ngIf="datos">
-    Conocer más
-    <a target="_blank" rel="noopener noreferrer" [href]="datos.web">{{
-      datos.nombre
-    }}</a>
+<div id="container" *ngIf="datos">
+  <strong>{{ datos.nombre }}</strong>
+  <p>
+    <a target="_blank" rel="noopener noreferrer" [href]="datos.web">
+      Conocer más</a
+    >
+    <br />
     {{ datos.jornada }}
   </p>
 </div>
