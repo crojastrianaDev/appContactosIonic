@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'padres',
     loadChildren: () => import('./pages/padres/padres.module').then( m => m.PadresPageModule)
+  },
+  {
+    path: 'nuevo-padre',
+    loadChildren: () => import('./pages/nuevo-padre/nuevo-padre.module').then( m => m.NuevoPadrePageModule)
   }
 ];
 @NgModule({

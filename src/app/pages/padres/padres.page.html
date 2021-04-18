@@ -36,19 +36,31 @@
 
   <ion-card *ngFor="let item of padres">
     <ion-item>
-      <ion-icon slot="start" name="man" *ngIf="item.parentesco==1"></ion-icon>
-      <ion-icon slot="start" name="woman" *ngIf="item.parentesco==2"></ion-icon>
+      <ion-icon slot="start" name="man" *ngIf="item.parentesco==2"></ion-icon>
+      <ion-icon slot="start" name="woman" *ngIf="item.parentesco==1"></ion-icon>
       <ion-label>
         <h5>{{item.nombrePadre}}</h5>
         <p>{{item.identificacion}}</p>
       </ion-label>
-      <ion-button fill="outline" slot="end">
-        <ion-icon name="setting-outline"></ion-icon>
+      <ion-button fill="outline" slot="end" (click)="selectPadre(item.id)">
+        <ion-icon name="settings-outline"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-card-content> {{item.descripcion}} </ion-card-content>
-    <ion-button (click)="selectPadre(item.id)">
-      <ion-icon slot="icon-only" name="setting-ouline"></ion-icon>
-    </ion-button>
   </ion-card>
+  <ion-content *ngIf="bandera">
+    <ion-fab
+      *ngIf="seleccionado"
+      vertical="bottom"
+      horizontal="end"
+      slot="fixed"
+    >
+      <ion-fab-button
+        routerLink="/tabs/nuevopadre/{{seleccionado.id}}"
+        routerDirection="forward"
+      >
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
 </ion-content>

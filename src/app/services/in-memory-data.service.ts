@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Icontacts } from '../models/icontacts.ts';
+import { IPadre } from '../models/ipadre.ts';
 
 @Injectable({
   providedIn: 'root',
@@ -58,14 +59,7 @@ export class InMemoryDataService implements InMemoryDataService {
         hijoId: 1,
         descripcion: 'Es un carpintero',
       },
-      {
-        id: 2,
-        identificacion: '646464433',
-        nombrePadre: 'Mercedes Triana',
-        parentesco: 1,
-        hijoId: 1,
-        descripcion: 'Maestra de educación primaria',
-      },
+
       {
         id: 3,
         identificacion: '64646743',
@@ -113,6 +107,11 @@ export class InMemoryDataService implements InMemoryDataService {
   getId(contactos: Icontacts[]): number {
     return contactos.length > 0
       ? Math.max(...contactos.map((contacto) => contacto.id)) + 1
+      : 11;
+  }
+  getIdPadre(padres: IPadre[]): number {
+    return padres.length > 0
+      ? Math.max(...padres.map((padre) => padre.id)) + 1
       : 11;
   }
 }

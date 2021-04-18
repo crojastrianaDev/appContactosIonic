@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear nuevo padre</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="regresar()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form novalidate [formGroup]="nuevoForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Identificación</ion-label>
+        <ion-input
+          type="tel"
+          placeholder="Documnento de identidad"
+          formControlName="identificacion"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Nombre padre"
+          formControlName="nombrePadre"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Parentesco</ion-label>
+        <ion-select
+          formControlName="parentesco"
+          placeholder="Selecciones parentesco"
+          interface="popover"
+          required
+        >
+          <ion-select-option
+            *ngFor="let item of parentescos"
+            value="{{item.id}}"
+          >
+            {{item.parentesco}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Id Hijo</ion-label>
+        <ion-input
+          formControlName="hijoId"
+          type="tel"
+          *ngIf="idHijo"
+          value="{{idHijo}}"
+          >{{idHijo}}</ion-input
+        >
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Empleo etc"
+          formControlName="descripcion"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

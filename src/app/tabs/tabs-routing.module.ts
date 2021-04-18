@@ -51,6 +51,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'nuevopadre/:id',
+        loadChildren: () =>
+          import('../pages/nuevo-padre/nuevo-padre.module').then(
+            (m) => m.NuevoPadrePageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',

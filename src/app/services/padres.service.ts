@@ -28,10 +28,19 @@ export class PadresService {
   }
 
   getPadres(hijoId: number): Observable<IPadre[]> {
-    const url = `${this.padresUrl}? hijoId= ${hijoId}`;
+    const url = `${this.padresUrl}/?hijoId=${hijoId}`;
     return this.http.get<IPadre[]>(url).pipe(
       tap((_) => this.log('Padres encontrados')),
       catchError(this.handleError('Get pasdres', []))
+    );
+  }
+
+  addPadre(padre: IPadre): Observable<IPadre> {
+    return this.http.post<IPadre>(this.padresUrl, padre, httpOptions).pipe(
+      tap((padre: IPadre) =>
+        this.log(`Nuevo padre con id= ${padre.id} del hijo=${padre.hijoId}`)
+      ),
+      catchError(this.handleError('Error crerando padre'))
     );
   }
 }

@@ -12,11 +12,11 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
   styleUrls: ['./padres.page.scss'],
 })
 export class PadresPage implements OnInit {
-  id;
-  any;
+  id: any;
   contacto: Icontacts;
   seleccionado: Icontacts;
   padres: IPadre[] = [];
+  bandera = false;
 
   constructor(
     private contactoService: ContactoService,
@@ -29,14 +29,27 @@ export class PadresPage implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
+      console.log(params['id']);
+
       this.contactoService
         .getContacto(params['id'])
         .subscribe((e) => (this.seleccionado = e));
-      this.padresService
-        .getPadres(params['id'])
-        .subscribe((e) => (this.padres = e));
+      this.padresService.getPadres(params['id']).subscribe((e) => {
+        this.padres = e;
+        //Bandera verdadera si el hijo no tiene padres
+        let padresArray = this.padres.length > 0;
+        if (!padresArray) {
+          console.log('Sin padres');
+          this.bandera = true;
+          //si el hijo tiene un padre
+        } else if (this.padres.length == 1) {
+          this.bandera = true;
+          //si ya tiene dos no puede agregar más
+        } else {
+          console.log(this.padres);
+        }
+      });
     });
-    console.log(this.padres);
   }
 
   regresar() {
