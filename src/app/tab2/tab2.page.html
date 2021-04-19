@@ -1,23 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Buscar </ion-title>
+    <ion-title> Elementos filtrados</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item-sliding *ngFor="let item of filtroService.contactosFiltrados">
-      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-      <ion-label>
-        <h2>{{item.nombre}} {{item.apellido}}</h2>
-        <h3>{{item.telefono}}</h3>
-        <h4>{{item.correo}}</h4>
-      </ion-label>
-      <ion-buttons slot="start">
-        <ion-button routerLink="/tabs/editarcontacto/{{item.id}}">
-          <ion-icon slot="start" name="pencil"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <ion-item>
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+        <ion-label>
+          <h2>{{item.nombre}} {{item.apellido}}</h2>
+          <h3>{{item.telefono}}</h3>
+          <h4>{{item.correo}}</h4>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button
+            color="danger"
+            routerLink="/tabs/editarcontacto/{{item.id}}"
+          >
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
     </ion-item-sliding>
   </ion-list>
 </ion-content>
